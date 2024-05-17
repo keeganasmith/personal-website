@@ -47,8 +47,8 @@ function new_post(title, msg){
 function del_post(p_key, s_key){
     const my_url = url + 'delete_post';
     const data = {
-    'p_key': p_key,
-    's_key': s_key
+        'p_key': p_key,
+        's_key': s_key
     };
     
     return fetch(my_url, {

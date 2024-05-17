@@ -17,5 +17,15 @@ def new_post():
         return jsonify({"status": "success", "message": "Post created successfully!"}), 201
     else:
         return jsonify({"status": "error", "message": "Failed to create post", "details": response}), 500
+    
+@app.route('/delete_post', methods= ['POST'])
+def del_post():
+    client = Database_Client()
+    data = request.get_json()
+    response = client.delete_item(p_key=data["p_key"], s_key=data["s_key"])
+    if response['ResponseMetadata']['HTTPStatusCode'] == 200:
+        return jsonify({"status": "success", "message": "Post deleted successfully!"}), 201
+    else:
+        return jsonify({"status": "error", "message": "Failed to delete post", "details": response}), 500
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

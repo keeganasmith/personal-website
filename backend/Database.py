@@ -33,7 +33,24 @@ class Database_Client:
         for post in posts:
             post["likes"] = int(post["likes"])
             post["dislikes"] = int(post["dislikes"])
+        posts = sorted(posts, key=lambda x: x["s_key"])
+        posts.reverse()
         return posts;
-# my_client = Database_Client()
+    
+    def delete_item(self, p_key, s_key):
+        try:
+            response = self.table.delete_item(
+                Key={
+                    'p_key': p_key,
+                    's_key': s_key
+                }
+            )
+            return response
+        except Exception as e:
+            print(f"Error deleting item: {e}")
+            return None
+#my_client = Database_Client()
 # my_client.get_posts()
-# print(my_client.get_posts())
+# print(len(my_client.get_posts()))
+# my_client.delete_item(my_client.get_posts()[0]['p_key'], my_client.get_posts()[0]['s_key'])
+# print(len(my_client.get_posts()))
