@@ -18,7 +18,7 @@ import { ref, onMounted } from 'vue'
 import { get_request } from '@/helper/request';
 let posts = ref([])
 onMounted(() => {
-    get_request("get_posts").then((data) =>{
+    get_request("get_posts", sessionStorage.getItem('token'), sessionStorage.getItem('refresh')).then((data) =>{
         posts.value = data
     })
 })

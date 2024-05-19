@@ -18,8 +18,9 @@
   });
   function delete_post(){
     try{
-      del_post(props.p_key, props.s_key)
-      window.location.reload();
+      del_post(props.p_key, props.s_key, sessionStorage.getItem('token'), sessionStorage.getItem('refresh')).then(() => {
+        window.location.reload();
+      })
     } catch (error) {
       console.error('Error deleting post:', error);
     }

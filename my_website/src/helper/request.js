@@ -1,6 +1,6 @@
 const url = 'http://192.168.4.187:5000/'
-function get_request(endpoint){
-    const my_url = url + endpoint;
+function get_request(endpoint, access_token, refresh_token){
+    const my_url = url + endpoint + `?access_token=${encodeURIComponent(access_token)}&refresh_token=${encodeURIComponent(refresh_token)}`;
     const options = {
         method: 'GET',
         headers: {
@@ -19,11 +19,13 @@ function get_request(endpoint){
         console.error('There was a problem with the fetch operation:', error);
     });
 }
-function new_post(title, msg){
+function new_post(title, msg, access_token, refresh_token){
     const my_url = url + 'new_post';
     const data = {
     'title': title,
-    'msg': msg
+    'msg': msg,
+    'access_token': access_token,
+    'refresh_token': refresh_token
     };
     
     return fetch(my_url, {
@@ -43,11 +45,13 @@ function new_post(title, msg){
         console.error('There was a problem with the fetch operation:', error);
     });
 }
-function del_post(p_key, s_key){
+function del_post(p_key, s_key, access_token, refresh_token){
     const my_url = url + 'delete_post';
     const data = {
         'p_key': p_key,
-        's_key': s_key
+        's_key': s_key,
+        'access_token': access_token,
+        'refresh_token': refresh_token
     };
     
     return fetch(my_url, {

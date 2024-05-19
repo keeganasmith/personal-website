@@ -21,7 +21,7 @@ let submitted = ref(false)
 let error = ref(false)
 const submitForm = () => {
     try{
-        new_post(title.value, msg.value)
+        new_post(title.value, msg.value, sessionStorage.getItem('token'), sessionStorage.getItem('refresh'))
         prev_title.value = title.value
         prev_msg.value = msg.value
         title.value = "";
