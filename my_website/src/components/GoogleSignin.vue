@@ -21,6 +21,7 @@
     let clientId = ""
     import { onMounted, ref } from 'vue';
     import { retrieve_email } from '../helper/request.js'
+    import { check_admin } from '../helper/permissions.js'
     //import {useStore} from 'vuex'
     let client = null;
     //const store = useStore()
@@ -35,6 +36,13 @@
         google.accounts.oauth2.revoke(sessionStorage.getItem("token"), () => {console.log('access token revoked')});
         sessionStorage.removeItem("token")
         sessionStorage.removeItem("refresh")
+        if(check_admin()){
+            sessionStorage.removeItem("email")
+            window.location.reload()
+        }
+        else{
+            sessionStorage.removeItem("email")
+        }
         token.value = false
         //store.commit("toggle")
     }
@@ -44,7 +52,9 @@
         sessionStorage.setItem("refresh", tokenResponse.refresh_token)
         retrieve_email(tokenResponse.access_token, tokenResponse.refresh_token).then((email) => {
             sessionStorage.setItem("email", email)
-            console.log(sessionStorage.getItem("email"))
+            if(check_admin()){
+                window.location.reload()
+            }
         })
     }
     onMounted(async () => {
