@@ -4,11 +4,10 @@ function get_request(endpoint){
     const options = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json', // Specify the content type
+            'Content-Type': 'application/json', 
         }
     };
 
-    // Make the fetch request
     return fetch(my_url, options)
     .then(response => {
         if (!response.ok) {
@@ -68,4 +67,27 @@ function del_post(p_key, s_key){
         console.error('There was a problem with the fetch operation:', error);
     });
 }
-export { get_request, new_post, del_post }
+function retrieve_email(access_token, refresh_token){
+    const my_url = url + `get_email?access_token=${encodeURIComponent(access_token)}&refresh_token=${encodeURIComponent(refresh_token)}`;
+    return fetch(my_url, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if(!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        
+        return response.json()
+    })
+    .then(data => {
+        console.log(data)
+        return data["message"]
+    })
+    .catch(error => {
+        console.error('There was a problem with the fetch operation:', error)
+    })
+}
+export { get_request, new_post, del_post, retrieve_email }
