@@ -13,6 +13,9 @@ class Database_Client:
         else:
             self.table = self.dynamodb.Table('Blog')
 
+    def get_user(self, email):
+        user = self.table.query(KeyConditionExpression=Key("p_key").eq("user"), FilterExpression=Attr("email").eq(email))["Items"][0]
+        return user
     def new_post(self, data):
         item = {
             'title': data["title"],
@@ -138,7 +141,7 @@ class Database_Client:
         if post_key in disliked_posts: 
             return False
         new_post_likes = int(post["likes"])
-        if post_key in disliked_posts:
+        if post_key in liked_posts:
             liked_posts.remove(post_key)
             new_post_likes -= 1
 
@@ -187,11 +190,13 @@ class Database_Client:
 # my_client.delete_item(my_client.get_posts()[0]['p_key'], my_client.get_posts()[0]['s_key'])
 # print(len(my_client.get_posts()))
 
-#my_client = Database_Client()
+# my_client = Database_Client()
 # my_client.remove_col("post", "likes")
+# my_client.remove_col("post", "dislikes")
 # my_client.remove_col("user", "liked_posts")
 # my_client.remove_col("user", "disliked_posts")
 # my_client.add_col("user", "liked_posts", "SS")
 # my_client.add_col("user", "disliked_posts", "SS")
 # my_client.add_col("post", "likes", "N")
-#my_client.scan_db()
+# my_client.add_col("post", "dislikes", "N")
+# my_client.scan_db()

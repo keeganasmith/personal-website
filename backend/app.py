@@ -23,7 +23,7 @@ def admin(access_token, refresh_token):
     except:
         return False
     
-@app.route('/get_posts')
+@app.route('/get_posts', methods=["GET"])
 def get_posts():
     access_token = request.args["access_token"]
     refresh_token = request.args.get("refresh_token", None)
@@ -34,19 +34,29 @@ def get_posts():
     else:
         return jsonify({"status": "error", "message": "Token invalid"}), 401
 
-@app.route('/new_post', methods = ['POST'])
-def new_post():
-    data = request.get_json()
-    access_token = data['access_token']
-    refresh_token = data.get('refresh_token', None)
-    if(not admin(access_token, refresh_token)):
+@app.route('/get_user', methods=["GET"])
+def get_user():
+    access_token = request.args["access_token"]
+    refresh_token = request.args.get("refresh_token", None)
+    google = GoogleClient(access_token=access_token, refresh_token=refresh_token)
+    try:
+        my_email = google.get_email()
+        client = Database_Client()
+        print(client.get_user(my_email))
+        return jsonify(client.get_user(my_email)), 200
+    except:
         return jsonify({"status": "error", "message": "Token invalid"}), 401
-    client = Database_Client()
-    response = client.new_post(data)
-    if response['ResponseMetadata']['HTTPStatusCode'] == 200:
-        return jsonify({"status": "success", "message": "Post created successfully!"}), 200
-    else:
-        return jsonify({"status": "error", "message": "Failed to create post", "details": response}), 500
+
+@app.route('/get_email', methods= ['GET'])
+def get_email():
+    access_token = request.args["access_token"]
+    refresh_token = request.args.get("refresh_token", None)
+    google = GoogleClient(access_token=access_token, refresh_token=refresh_token)
+    try:
+        my_email = google.get_email()
+        return jsonify({"status": "success", "message": my_email}), 200
+    except:
+        return jsonify({"status": "error", "message": "Token invalid"}), 401
     
 @app.route('/delete_post', methods= ['POST'])
 def del_post():
@@ -61,17 +71,6 @@ def del_post():
         return jsonify({"status": "success", "message": "Post deleted successfully!"}), 200
     else:
         return jsonify({"status": "error", "message": "Failed to delete post", "details": response}), 500
-
-@app.route('/get_email', methods= ['GET'])
-def get_email():
-    access_token = request.args["access_token"]
-    refresh_token = request.args.get("refresh_token", None)
-    google = GoogleClient(access_token=access_token, refresh_token=refresh_token)
-    try:
-        my_email = google.get_email()
-        return jsonify({"status": "success", "message": my_email}), 200
-    except:
-        return jsonify({"status": "error", "message": "Token invalid"}), 401
 
 @app.route('/new_user', methods=['POST'])
 def new_user():
@@ -102,5 +101,21 @@ def post_interaction():
     except Exception as e:
         print(traceback.format_exc())
         return jsonify({"status": "error", "message": "Token invalid"}), 401
+
+@app.route('/new_post', methods = ['POST'])
+def new_post():
+    data = request.get_json()
+    access_token = data['access_token']
+    refresh_token = data.get('refresh_token', None)
+    if(not admin(access_token, refresh_token)):
+        return jsonify({"status": "error", "message": "Token invalid"}), 401
+    client = Database_Client()
+    response = client.new_post(data)
+    if response['ResponseMetadata']['HTTPStatusCode'] == 200:
+        return jsonify({"status": "success", "message": "Post created successfully!"}), 200
+    else:
+        return jsonify({"status": "error", "message": "Failed to create post", "details": response}), 500
+
+    
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

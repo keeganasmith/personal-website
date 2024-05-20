@@ -51,7 +51,7 @@
         token.value = true
         sessionStorage.setItem("token", tokenResponse.access_token)
         sessionStorage.setItem("refresh", tokenResponse.refresh_token)
-        retrieve_email(tokenResponse.access_token, tokenResponse.refresh_token).then((email) => {
+        retrieve_email().then((email) => {
             sessionStorage.setItem("email", email)
             new_user(tokenResponse.access_token, tokenResponse.refresh_token).then(() =>{
                 if(check_admin()){
