@@ -22,6 +22,7 @@
     import { onMounted, ref } from 'vue';
     import { retrieve_email } from '../helper/request.js'
     import { check_admin } from '../helper/permissions.js'
+    import { new_user } from '../helper/request.js'
     //import {useStore} from 'vuex'
     let client = null;
     //const store = useStore()
@@ -52,9 +53,12 @@
         sessionStorage.setItem("refresh", tokenResponse.refresh_token)
         retrieve_email(tokenResponse.access_token, tokenResponse.refresh_token).then((email) => {
             sessionStorage.setItem("email", email)
-            if(check_admin()){
-                window.location.reload()
-            }
+            new_user(tokenResponse.access_token, tokenResponse.refresh_token).then(() =>{
+                if(check_admin()){
+                    window.location.reload()
+                }
+        })
+            
         })
     }
     onMounted(async () => {

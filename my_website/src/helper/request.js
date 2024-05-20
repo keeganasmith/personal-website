@@ -94,4 +94,30 @@ function retrieve_email(access_token, refresh_token){
         console.error('There was a problem with the fetch operation:', error)
     })
 }
-export { get_request, new_post, del_post, retrieve_email }
+function new_user(access_token, refresh_token){
+    console.log("got here")
+    const my_url = url + 'new_user'
+    const data = {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+    };
+    sessionStorage.setItem("data", data)
+    console.log(data)
+    return fetch(my_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+            return response.json();
+        })
+        .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+}
+export { get_request, new_post, del_post, retrieve_email, new_user }

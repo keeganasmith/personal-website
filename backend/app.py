@@ -12,7 +12,7 @@ def valid_token(access_token, refresh_token):
         return True
     except:
         return False
-
+    
 def admin(access_token, refresh_token):
     google = GoogleClient(access_token=access_token, refresh_token=refresh_token)
     try:
@@ -20,11 +20,11 @@ def admin(access_token, refresh_token):
         return email == "keeganasmith2003@gmail.com"
     except:
         return False
-
+    
 @app.route('/get_posts')
 def get_posts():
     access_token = request.args["access_token"]
-    refresh_token = request.args["refresh_token"]
+    refresh_token = request.args.get("refresh_token", None)
     if(valid_token(access_token, refresh_token)):
         client = Database_Client()
         my_posts= client.get_posts()
@@ -36,7 +36,7 @@ def get_posts():
 def new_post():
     data = request.get_json()
     access_token = data['access_token']
-    refresh_token = data['refresh_token']
+    refresh_token = data.get('refresh_token', None)
     if(not admin(access_token, refresh_token)):
         return jsonify({"status": "error", "message": "Token invalid"}), 401
     client = Database_Client()
@@ -50,7 +50,7 @@ def new_post():
 def del_post():
     data = request.get_json()
     access_token = data['access_token']
-    refresh_token = data['refresh_token']
+    refresh_token = data.get('refresh_token', None)
     if(not admin(access_token, refresh_token)):
         return jsonify({"status": "error", "message": "Token invalid"}), 401
     client = Database_Client()
@@ -63,7 +63,7 @@ def del_post():
 @app.route('/get_email', methods= ['GET'])
 def get_email():
     access_token = request.args["access_token"]
-    refresh_token = request.args["refresh_token"]
+    refresh_token = request.args.get("refresh_token", None)
     google = GoogleClient(access_token=access_token, refresh_token=refresh_token)
     try:
         my_email = google.get_email()
@@ -71,5 +71,16 @@ def get_email():
     except:
         return jsonify({"status": "error", "message": "Token invalid"}), 401
 
+@app.route('/new_user', methods=['POST'])
+def new_user():
+    data = request.get_json()
+    google = GoogleClient(access_token=data["access_token"], refresh_token=data.get("refresh_token", None))
+    try:
+        user_info = google.get_user_info()
+        client = Database_Client()
+        client.new_user(user_info)
+        return jsonify({"status": "success", "message": "user created"}), 200
+    except:
+        return jsonify({"status": "error", "message": "Token invalid"}), 401
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

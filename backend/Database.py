@@ -3,7 +3,7 @@ import boto3
 import os
 from datetime import datetime
 from dotenv import load_dotenv
-
+from boto3.dynamodb.conditions import Key, Attr
 load_dotenv()
 class Database_Client:
     def __init__(self):
@@ -25,11 +25,25 @@ class Database_Client:
         response = self.table.put_item(Item=item)
         return response
     
+    def new_user(self, user_info):
+        duplicate_users = self.table.query(KeyConditionExpression=Key("p_key").eq("user"), FilterExpression=Attr("email").eq(user_info["email"]))["Items"]
+        if(len(duplicate_users) > 0):
+            return;
+        item = {
+            'name': user_info['name'],
+            'email': user_info['email'],
+            'liked_posts': [],
+            'disliked_posts': [],
+            'p_key': 'user',
+            's_key': str(datetime.now().timestamp())
+        }
+        self.table.put_item(Item=item)
+        
     def scan_db(self):
         print(self.table.scan())
     
     def get_posts(self):
-        posts = self.table.scan()["Items"]
+        posts = self.table.query(KeyConditionExpression=Key("p_key").eq("post"))["Items"]
         for post in posts:
             post["likes"] = int(post["likes"])
             post["dislikes"] = int(post["dislikes"])
