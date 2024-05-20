@@ -82,5 +82,19 @@ def new_user():
         return jsonify({"status": "success", "message": "user created"}), 200
     except:
         return jsonify({"status": "error", "message": "Token invalid"}), 401
+    
+@app.route('/post_interaction', methods=['POST'])
+def post_interaction():
+    data = request.get_json()
+    try:
+        google = GoogleClient(access_token=data["access_token"], refresh_token=data.get("refresh_token", None))
+        user_email = google.get_email()
+        client = Database_Client()
+        if(data["type"] == "like"):
+            client.like_post(user_email, data["s_key"])
+        elif(data["type"] == "like"):
+            client.dislike_post(user_email, data["s_key"])
+    except:
+        return jsonify({"status": "error", "message": "Token invalid"}), 401
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")

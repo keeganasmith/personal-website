@@ -51,6 +51,46 @@ class Database_Client:
         posts.reverse()
         return posts;
     
+    def like_post(self, user_email, post_key):
+        user = self.table.query(KeyConditionExpression=Key("p_key").eq("user"), FilterExpression=Attr("email").eq(user_email))["Items"][0]
+        post = self.table.query(KeyConditionExpression=Key("p_key").eq("post") & Key("s_key").eq(post_key))["Items"][0]
+        liked_posts = user["liked_posts"]
+        disliked_posts = user["disliked_posts"]
+        
+        if post_key in liked_posts:
+            return False
+        new_post_dislikes = post["dislikes"]
+        if post_key in disliked_posts:
+            disliked_posts.remove(post_key)
+            new_post_dislikes = post["dislikes"] - 1
+        
+        liked_posts.append(post_key)
+        self.table.update_item(
+            Key={
+                's_key': user["s_key"],
+                'p_key': "user"
+            },
+            UpdateExpression="SET liked_posts = :newLiked, SET disliked_posts = :new_post_dislikes",
+            ExpressionAttributeValues={
+                ':newLiked': liked_posts,
+                ':new_post_dislikes': new_post_dislikes
+            },
+            ReturnValues="UPDATED_NEW"
+        )
+        self.table.update_item(
+            Key = {
+                's_key': post_key,
+                'p_key': "post"
+            },
+            UpdateExpression="SET likes = :new_likes, SET dislikes = :new_dislikes",
+            ExpressionAttributeValues={
+                ':new_likes': post["likes"] + 1,
+                ':new_dislikes': new_post_dislikes  
+            },
+            ReturnValues = "UPDATE_NEW"
+        )
+    #def dislike_post(self, user_email, post_key):
+        
     def delete_item(self, p_key, s_key):
         try:
             response = self.table.delete_item(
