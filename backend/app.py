@@ -2,6 +2,8 @@ from flask import Flask, jsonify, request
 from Database import Database_Client
 from flask_cors import CORS
 from google_client.GoogleClient import GoogleClient
+import traceback
+
 app = Flask(__name__)
 CORS(app)
 
@@ -86,15 +88,19 @@ def new_user():
 @app.route('/post_interaction', methods=['POST'])
 def post_interaction():
     data = request.get_json()
+    google = GoogleClient(access_token=data["access_token"], refresh_token=data.get("refresh_token", None))
+
     try:
-        google = GoogleClient(access_token=data["access_token"], refresh_token=data.get("refresh_token", None))
         user_email = google.get_email()
         client = Database_Client()
+        updated = False
         if(data["type"] == "like"):
-            client.like_post(user_email, data["s_key"])
-        elif(data["type"] == "like"):
-            client.dislike_post(user_email, data["s_key"])
-    except:
+            updated = client.like_post(user_email, data["s_key"])
+        elif(data["type"] == "dislike"):
+            updated = client.dislike_post(user_email, data["s_key"])
+        return jsonify({"status": "success", "message": updated})
+    except Exception as e:
+        print(traceback.format_exc())
         return jsonify({"status": "error", "message": "Token invalid"}), 401
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
