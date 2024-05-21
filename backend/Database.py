@@ -40,14 +40,9 @@ class Database_Client:
                 ReturnValues="UPDATED_NEW"
             )
     
-    def add_col(self, p_key, column, type):
+    def add_col(self, p_key, column, default_value):
         items = self.table.query(KeyConditionExpression=Key("p_key").eq(p_key))["Items"]
-        type_mapping = {
-            "SS": [],
-            "NS": [],
-            "N": 0
-        }
-        default_value = type_mapping[type]
+        
         for item in items:
             self.table.update_item(
                 Key={
@@ -67,8 +62,8 @@ class Database_Client:
         item = {
             'name': user_info['name'],
             'email': user_info['email'],
-            'liked_posts': {'SS': []},
-            'disliked_posts': {'SS': []},
+            'liked_posts': [],
+            'disliked_posts': [],
             'p_key': 'user',
             's_key': str(datetime.now().timestamp())
         }
@@ -190,13 +185,13 @@ class Database_Client:
 # my_client.delete_item(my_client.get_posts()[0]['p_key'], my_client.get_posts()[0]['s_key'])
 # print(len(my_client.get_posts()))
 
-# my_client = Database_Client()
-# my_client.remove_col("post", "likes")
-# my_client.remove_col("post", "dislikes")
-# my_client.remove_col("user", "liked_posts")
-# my_client.remove_col("user", "disliked_posts")
-# my_client.add_col("user", "liked_posts", "SS")
-# my_client.add_col("user", "disliked_posts", "SS")
-# my_client.add_col("post", "likes", "N")
-# my_client.add_col("post", "dislikes", "N")
-# my_client.scan_db()
+my_client = Database_Client()
+my_client.remove_col("post", "likes")
+my_client.remove_col("post", "dislikes")  
+my_client.remove_col("user", "liked_posts")
+my_client.remove_col("user", "disliked_posts")
+my_client.add_col("user", "liked_posts", [])
+my_client.add_col("user", "disliked_posts", [])
+my_client.add_col("post", "likes", 0)
+my_client.add_col("post", "dislikes", 0)
+my_client.scan_db()

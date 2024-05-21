@@ -1,31 +1,35 @@
 <template>
-  <div class="max-w-md mx-auto p-4 bg-white rounded-lg shadow-md">
-    <h1 class="text-2xl font-bold text-gray-800 mb-2">{{ props.title }}</h1>
-    <p class="text-gray-600 mb-4">{{ props.msg }}</p>
-    <div class="mb-4">
-      <p class="text-gray-700 mb-2">Likes: <span class="font-semibold">{{ likes }}</span></p>
+  <div class="box max-w-3/4 mx-auto p-4 bg-black">
+    <h1 class="text-2xl font-bold text-white mb-2">{{ props.title }}</h1>
+    <p class="text-white mb-4">{{ props.msg }}</p>
+    <div class="flex space-x-4 mb-4">
+      <div class="w-1/4">
+        <p class="text-white mb-2">Likes: <span class="font-semibold">{{ likes }}</span></p>
+      </div>
+      <div class="w-1/4">
+        <p class="text-white mb-2">Dislikes: <span class="font-semibold">{{ dislikes }}</span></p>
+      </div>
+    </div>
+    <div class="flex space-x-4 mb-4">
       <button 
         @click="like" 
         :disabled="liked" 
-        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-blue-300 disabled:cursor-not-allowed">
+        class="w-1/4 px-4 py-2 border border-white text-white bg-transparent rounded hover:bg-white hover:text-black disabled:border-gray-500 disabled:text-gray-500 disabled:bg-transparent disabled:cursor-not-allowed">
         Like
       </button>
-    </div>
-    <div class="mb-4">
-      <p class="text-gray-700 mb-2">Dislikes: <span class="font-semibold">{{ dislikes }}</span></p>
       <button 
         @click="dislike" 
         :disabled="disliked" 
-        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-blue-300 disabled:cursor-not-allowed">
+        class="w-1/4 px-4 py-2 border border border-white text-white bg-transparent rounded hover:bg-white hover:text-black disabled:border-gray-500 disabled:text-gray-500 disabled:bg-transparent disabled:cursor-not-allowed">
         Dislike
       </button>
+      <button 
+        @click="delete_post" 
+        v-if="is_admin" 
+        class="w-1/4 px-4 py-2 border border-white text-white bg-transparent rounded hover:bg-white hover:text-black disabled:border-gray-500 disabled:text-gray-500 disabled:bg-transparent disabled:cursor-not-allowed">
+        Delete
+      </button>
     </div>
-    <button 
-      @click="delete_post" 
-      v-if="is_admin" 
-      class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-900">
-      Delete
-    </button>
   </div>
 </template>
 <script setup>

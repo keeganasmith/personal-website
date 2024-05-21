@@ -1,24 +1,33 @@
 <template>
-    <h1>Keegan's Blog</h1>
-    <p v-if="not_loaded">Loading...</p>
-    <div id="posts">
-        <BlogPost v-for="(item, index) in posts" 
-        :key="index" 
-        :title="item.title"
-        :msg="item.msg"
-        :likes="item.likes"
-        :dislikes="item.dislikes"
-        :liked="item.liked"
-        :disliked="item.disliked" 
-        :p_key="item.p_key"
-        :s_key="item.s_key"
-        />
+    <div class="bg-black min-h-screen text-white">
+        <div class="container mx-auto p-4">
+            <h1 class="text-4xl font-bold text-center mb-8">Keegan's Blog</h1>
+            <p v-if="not_loaded" class="text-center text-gray-400">Loading...</p>
+            <div id="posts" class="space-y-4">
+                <BlogPost 
+                    v-for="(item, index) in posts" 
+                    :key="index" 
+                    :title="item.title"
+                    :msg="item.msg"
+                    :likes="item.likes"
+                    :dislikes="item.dislikes"
+                    :liked="item.liked"
+                    :disliked="item.disliked" 
+                    :p_key="item.p_key"
+                    :s_key="item.s_key"
+                />
+            </div>
+        </div>
     </div>
 </template>
 <script setup>
 import BlogPost from './BlogPost.vue'
 import { ref, onMounted } from 'vue'
 import { get_posts, get_user } from '../helper/request.js';
+import { notify } from "@kyvg/vue3-notification";
+import { useRouter } from 'vue-router';
+console.log("got here")
+const router = useRouter();
 let posts = ref([])
 let not_loaded = ref(true);
 let likes = ref(new Set())
@@ -29,6 +38,7 @@ onMounted(() => {
         console.log(data)
         likes.value = new Set(data["liked_posts"])
         dislikes.value = new Set(data["disliked_posts"])
+        
         get_posts().then((data) =>{
             posts.value = data
             for(let i = 0; i < posts.value.length; i++){
@@ -44,7 +54,13 @@ onMounted(() => {
             }
             not_loaded = false
         })
-    })
+    }).catch(() => {
+        notify({
+            title: "Not Authorized",
+            text: "Howdy, your access token has expired, please try logging out and logging back in again.",
+        });
+        router.push('/login');
+    });
 
     
 
