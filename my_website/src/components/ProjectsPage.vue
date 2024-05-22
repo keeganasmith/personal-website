@@ -1,7 +1,7 @@
 <template>
     <div class="py-4">
         <h1 class="text-4xl font-bold text-center mb-8">Keegan's Projects</h1>
-        <p class="text-center">Below is a list of projects I have worked on. If you would like a live demo of any of these projects, please reach out to me.</p>
+        <p class="text-center">Below is a list of projects I have worked on. If you would like a live demo of any of these projects, or if you would like to collaborate, please reach out to me.</p>
         <div class="space-y-8">
         <ProjectItem
             title="This Website"
@@ -22,6 +22,16 @@
             image2="crash-2.png"
             source ="https://github.com/keeganasmith/TidalHack2024"
             start="2/24/2024"
+        />
+        <ProjectItem 
+            title="Phishing Email Detector"
+            summary="<p>This web application scanned a user's email inbox for fraudulent emails. User's would login to their google account and we would grab the first 20 emails in their inbox. User's could analyze emails by clicking on one of their emails.</p>
+            <p>We determined the threat severity of an email by looking through the email for malicious links, determining the validity of the email address of the sender, and by passing the email through openai's chatgpt api.</p>
+            <p>This project was done at a hackathon, I was responsible for setting up the flask api and creating the endpoint for fetching user emails, which included putting the emails into a readable format.</p>"
+            image1="phish-1.png"
+            image2=""
+            source="https://github.com/keeganasmith/tamuhack2024"
+            start="1/27/2024"
         />
         </div>
     </div>
