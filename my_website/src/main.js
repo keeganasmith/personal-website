@@ -10,12 +10,16 @@ import NewPostForm from './components/NewPostForm.vue'
 import LoginPage from './components/LoginPage.vue'
 import { check_admin } from './helper/permissions.js'
 import './assets/tailwind.css';
+import WorkExperience from './components/WorkExperience.vue';
+import ContactPage from './components/ContactPage.vue'
 const routes = [
   { path: '/', component: HomePage },
   { path: '/blog', component: BlogPage, meta: { requiresAuth: true } },
   { path: '/projects', component: ProjectsPage },
   { path: '/new_post', component: NewPostForm, meta: { requiresAdmin: true }},
-  { path: '/login', component: LoginPage}
+  { path: '/login', component: LoginPage},
+  { path: '/experience', component: WorkExperience},
+  { path: '/contact', component: ContactPage}
 ]
 
 const router = createRouter({

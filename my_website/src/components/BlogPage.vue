@@ -1,23 +1,19 @@
 <template>
-    <div class="bg-black min-h-screen text-white">
-        <div class="container mx-auto p-4">
-            <h1 class="text-4xl font-bold text-center mb-8">Keegan's Blog</h1>
-            <p v-if="not_loaded" class="text-center text-gray-400">Loading...</p>
-            <div id="posts" class="space-y-4">
-                <BlogPost 
-                    v-for="(item, index) in posts" 
-                    :key="index" 
-                    :title="item.title"
-                    :msg="item.msg"
-                    :likes="item.likes"
-                    :dislikes="item.dislikes"
-                    :liked="item.liked"
-                    :disliked="item.disliked" 
-                    :p_key="item.p_key"
-                    :s_key="item.s_key"
-                />
-            </div>
-        </div>
+    <h1 class="text-4xl font-bold text-center mb-8">Keegan's Blog</h1>
+    <p v-if="not_loaded" class="text-center text-gray-400">Loading...</p>
+    <div id="posts" class="space-y-4">
+        <BlogPost 
+            v-for="(item, index) in posts" 
+            :key="index" 
+            :title="item.title"
+            :msg="item.msg"
+            :likes="item.likes"
+            :dislikes="item.dislikes"
+            :liked="item.liked"
+            :disliked="item.disliked" 
+            :p_key="item.p_key"
+            :s_key="item.s_key"
+        />
     </div>
 </template>
 <script setup>
@@ -26,7 +22,6 @@ import { ref, onMounted } from 'vue'
 import { get_posts, get_user } from '../helper/request.js';
 import { notify } from "@kyvg/vue3-notification";
 import { useRouter } from 'vue-router';
-console.log("got here")
 const router = useRouter();
 let posts = ref([])
 let not_loaded = ref(true);

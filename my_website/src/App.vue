@@ -2,8 +2,12 @@
 <template>
   <div>
     <NavBar></NavBar>
-    <notifications class="custom-notifications" />
-    <RouterView></RouterView>
+    <div class="bg-black min-h-screen text-white">
+      <div class="container mx-auto p-4></div>">
+      <notifications class="custom-notifications" />
+      <RouterView></RouterView>
+      </div>
+    </div>
   </div>
 </template>
 

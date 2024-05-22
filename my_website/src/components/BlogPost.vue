@@ -1,5 +1,5 @@
 <template>
-  <div class="box max-w-3/4 mx-auto p-4 bg-black">
+  <div class="box max-w-lg mx-auto p-4 bg-black">
     <h1 class="text-2xl font-bold text-white mb-2">{{ props.title }}</h1>
     <p class="text-white mb-4">{{ props.msg }}</p>
     <div class="flex space-x-4 mb-4">
@@ -20,7 +20,7 @@
       <button 
         @click="dislike" 
         :disabled="disliked" 
-        class="w-1/4 px-4 py-2 border border border-white text-white bg-transparent rounded hover:bg-white hover:text-black disabled:border-gray-500 disabled:text-gray-500 disabled:bg-transparent disabled:cursor-not-allowed">
+        class="w-1/4 px-4 py-2 border border-white text-white bg-transparent rounded hover:bg-white hover:text-black disabled:border-gray-500 disabled:text-gray-500 disabled:bg-transparent disabled:cursor-not-allowed">
         Dislike
       </button>
       <button 

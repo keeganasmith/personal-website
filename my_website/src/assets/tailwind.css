@@ -9,7 +9,7 @@
   --w: 20px;  /* width of border */
   
 
-  border: var(--b) solid #0000; /* space for the border */
+  border: var(--b) solid #0000;
   --_g: #0000 90deg,var(--c) 0;
   --_p: var(--w) var(--w) border-box no-repeat;
   background:
