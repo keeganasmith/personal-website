@@ -17,7 +17,7 @@
     </div>
 </template>
 <script setup>
-import BlogPost from './BlogPost.vue'
+import BlogPost from '../components/BlogPost.vue'
 import { ref, onMounted } from 'vue'
 import { get_posts, get_user } from '../helper/request.js';
 import { notify } from "@kyvg/vue3-notification";

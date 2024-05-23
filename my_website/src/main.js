@@ -3,15 +3,15 @@ import App from './App.vue'
 import { createWebHistory, createRouter } from 'vue-router'
 import Notifications from '@kyvg/vue3-notification'
 import { notify } from "@kyvg/vue3-notification";
-import HomePage from './components/HomePage.vue'
-import BlogPage from './components/BlogPage.vue'
-import ProjectsPage from './components/ProjectsPage.vue'
-import NewPostForm from './components/NewPostForm.vue'
-import LoginPage from './components/LoginPage.vue'
+import HomePage from './pages/HomePage.vue'
+import BlogPage from './pages/BlogPage.vue'
+import ProjectsPage from './pages/ProjectsPage.vue'
+import NewPostForm from './pages/NewPostForm.vue'
+import LoginPage from './pages/LoginPage.vue'
 import { check_admin } from './helper/permissions.js'
 import './assets/tailwind.css';
-import WorkExperience from './components/WorkExperience.vue';
-import ContactPage from './components/ContactPage.vue'
+import WorkExperience from './pages/WorkExperience.vue';
+import ContactPage from './pages/ContactPage.vue'
 const routes = [
   { path: '/', component: HomePage },
   { path: '/blog', component: BlogPage, meta: { requiresAuth: true } },

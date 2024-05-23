@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-import GoogleSignin from './GoogleSignin.vue';
+import GoogleSignin from '../components/GoogleSignin.vue';
 </script>

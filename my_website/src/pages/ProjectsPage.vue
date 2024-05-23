@@ -67,5 +67,5 @@
   </template>
   
   <script setup>
-  import ProjectItem from './ProjectItem.vue';
+  import ProjectItem from '../components/ProjectItem.vue';
   </script>
