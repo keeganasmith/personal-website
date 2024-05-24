@@ -10,8 +10,11 @@ const is_admin = check_admin()
                 <RouterLink to="/blog" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Blog</RouterLink>
                 <RouterLink to="/projects" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Projects</RouterLink>
                 <RouterLink to="/experience" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Work Experience</RouterLink>
+                <RouterLink to="/blocktd" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Block TD</RouterLink>
                 <RouterLink to="/contact" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Contact</RouterLink>
+
                 <RouterLink to="/new_post" v-if="is_admin" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">New Post</RouterLink>
+
             </div>
             <div>
                 <RouterLink to="/login" class="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700">Login</RouterLink>

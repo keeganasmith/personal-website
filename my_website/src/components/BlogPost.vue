@@ -1,5 +1,5 @@
 <template>
-  <div class="box max-w-2x1 mx-auto p-4 bg-black">
+  <div class="box max-w-2xl mx-auto p-4 bg-black">
     <h1 class="text-2xl font-bold text-white mb-2">{{ props.title }}</h1>
     <p class="text-white mb-4">{{ props.msg }}</p>
     <div class="flex space-x-4 mb-4">

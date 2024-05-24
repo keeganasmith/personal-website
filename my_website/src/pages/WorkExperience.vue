@@ -14,7 +14,7 @@
         summary="<p>As a student technician I was responsible for helping researchers, creating and 
         maintaining ticket automation software, and training new technicians.</p><br>
         <p>Most of the issues I assisted with involved helping users set up their environment on one or more clusters on Linux (CentOS). These issues ranged from guiding machine learning
-        researchers in configuring their Python environments to utilize our GPUs, to assisting aerospace researchers in running their decade-old Fortran code on hundreds of CPU cores.</p>
+        researchers in configuring their Python environments to utilize our GPUs, to assisting aerospace researchers in running their decade-old Fortran code on hundreds of CPU cores.</p><br>
         <p>The automation software I helped write and maintain involved creating and automating ticket workflows. The software consisted of two frontends: 1) a form on our website where users 
         could submit requests and 2) a shortcut in slack which allowed hprc staff to create requests on behalf of users. When a request is made, an https request is made to the bot, and the bot decides 
         what should happen to the request next. This decision is made based on the type of request being made, the current step of the request, and the workflow for said request type. These workflows 

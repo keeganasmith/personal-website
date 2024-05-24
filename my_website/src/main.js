@@ -12,6 +12,7 @@ import { check_admin } from './helper/permissions.js'
 import './assets/tailwind.css';
 import WorkExperience from './pages/WorkExperience.vue';
 import ContactPage from './pages/ContactPage.vue'
+import PyGame from './components/PyGame.vue'
 const routes = [
   { path: '/', component: HomePage },
   { path: '/blog', component: BlogPage, meta: { requiresAuth: true } },
@@ -19,7 +20,8 @@ const routes = [
   { path: '/new_post', component: NewPostForm, meta: { requiresAdmin: true }},
   { path: '/login', component: LoginPage},
   { path: '/experience', component: WorkExperience},
-  { path: '/contact', component: ContactPage}
+  { path: '/contact', component: ContactPage},
+  { path: '/blocktd', component: PyGame}
 ]
 
 const router = createRouter({

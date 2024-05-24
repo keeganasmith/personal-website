@@ -1,5 +1,5 @@
 <template>
-  <div class="box max-w-2x1 mx-auto py-4 px-4">
+  <div class="box max-w-3xl mx-auto py-4 px-4">
     <h1 class="text-3xl font-bold text-left mb-8">{{ title }}</h1>
     <img v-if="image1Src" :src="image1Src" alt="Project Image 1" class="mb-4">
     <img v-if="image2Src" :src="image2Src" alt="Project Image 2" class="mb-4">
