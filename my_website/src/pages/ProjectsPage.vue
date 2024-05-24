@@ -1,7 +1,8 @@
 <template>
     <div class="py-4">
         <h1 class="text-4xl font-bold text-center mb-8">Keegan's Projects</h1>
-        <p class="text-center">Below is a list of projects I have worked on. If you would like a live demo of any of these projects, or if you would like to collaborate, please reach out to me.</p>
+        <p class="text-center ">Below is a list of projects I have worked on. If you would like a live demo of any of these projects, or if you would like to collaborate, please reach out to me.</p>
+        <br>
         <div class="space-y-8">
         <ProjectItem
             title="This Website"
