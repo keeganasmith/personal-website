@@ -30,6 +30,7 @@ let dislikes = ref(new Set())
 onMounted(() => {
     not_loaded = true;
     get_user().then((data) =>{
+        console.log("the next message is the data received:")
         console.log(data)
         likes.value = new Set(data["liked_posts"])
         dislikes.value = new Set(data["disliked_posts"])
