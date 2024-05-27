@@ -1,5 +1,5 @@
 // const url = 'http://192.168.4.187:5000/'
-const url = 'https://ec2-3-133-151-61.us-east-2.compute.amazonaws.com/'
+const url = 'https://my-web-api-block-e0bd67aaedcf.herokuapp.com/'
 function get_request(endpoint){
     const my_url = url + endpoint;
     const options = {

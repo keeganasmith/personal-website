@@ -28,7 +28,8 @@
 </template>
 <script setup>
 import { ref } from "vue";
-
+import { check_admin } from '../helper/permissions';
+const is_admin = check_admin()
 let showMenu = ref(false);
 const toggleNav = () => {
     showMenu.value = !showMenu.value
