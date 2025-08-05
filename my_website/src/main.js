@@ -13,6 +13,7 @@ import './assets/tailwind.css';
 import WorkExperience from './pages/WorkExperience.vue';
 import ContactPage from './pages/ContactPage.vue'
 import PyGame from './components/PyGame.vue'
+import GraphVisPage from './pages/GraphVisPage.vue';
 const routes = [
   { path: '/', component: HomePage },
   { path: '/blog', component: BlogPage, meta: { requiresAuth: true } },
@@ -21,7 +22,8 @@ const routes = [
   { path: '/login', component: LoginPage},
   { path: '/experience', component: WorkExperience},
   { path: '/contact', component: ContactPage},
-  { path: '/blocktd', component: PyGame}
+  { path: '/blocktd', component: PyGame},
+  { path: '/byteboost25', component: GraphVisPage}
 ]
 
 const router = createRouter({

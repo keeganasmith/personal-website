@@ -15,6 +15,7 @@
             </div>
 
             <ul :class="showMenu ? 'flex' : 'hidden'" class="flex-col mt-8 space-y-4 md:flex md:space-y-0 md:flex-row md:items-center md:space-x-10 md:mt-0">
+                <router-link to="/byteboost25" class="text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">Byteboost 25</router-link>
                 <router-link to="/blog" class="text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">Blog</router-link>
                 <router-link to="/projects" class="text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">Projects</router-link>
                 <router-link to="/experience" class="text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700">Work Experience</router-link>
