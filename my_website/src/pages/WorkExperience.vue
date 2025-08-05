@@ -4,7 +4,18 @@
     <WorkItem 
         title="Digital Innovation Intern"
         company="The Coca-Cola Company"
-        summary="<p>TBD</p>"
+        summary="<p>As a digital innovation intern at the Coca-Cola company, I designed and implemented an algorithm for determining bundle promotions for specific retailers.</p>
+        <br>
+        Essentially, I would segment the retailers based on location, volume, and channel. For each segment, I would calculate the average number of SKUs (stock keeping units, think unique items 2L sprite, 12 pack of 12 oz coca-cola, etc.) for each development set. Where a development set is a category of items that fulfill a similar purpose. For instance a development set might be called energy drinks, and it contains single and multi serve drinks under the monster or reign brands.</p>
+        <br>
+        <p>If a retailer is selling below the average number of skus for the development set, they are lacking in assortment, and thus a bundle discount with items in that development set should be offered.</p>
+        <br>
+        <p>If a retailer is selling above the average number of skus for the development set, they need to focus on selling more of their best selling items in that development set. Thus a discount on their top selling items within the development set is offered.</p>
+        <br>
+        <p>If a retailer is selling nothing in the development set, then an aggressive development discount on the top selling items overall within the development set is offered.</p>
+        <br>
+        <p>I implemented this algorithm in Python with real customer data, and I also created a web GUI for it. The web GUI used vue.js, much like the website you are currently looking at.
+        "
         start="6/3/2024"
         end="8/2/2024"
     />
