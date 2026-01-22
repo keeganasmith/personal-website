@@ -1,0 +1,206 @@
+/* =========================
+   Base Styling
+========================= */
+
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --accent: #38bdf8;
+  --accent2: #fbbf24;
+  --border: rgba(255, 255, 255, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0; /* remove browser default margin */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* =========================
+   Layout / Spacing
+========================= */
+
+header,
+main,
+footer {
+  max-width: 900px;
+  margin: 0 auto;      /* centers content (MARGIN) */
+  padding: 24px;       /* space inside (PADDING) */
+}
+
+/* Header "card" */
+header {
+  margin-top: 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+/* Each section looks like a card */
+section {
+  margin: 20px 0;      /* space OUTSIDE each section (MARGIN) */
+  padding: 18px 20px;  /* space INSIDE each section (PADDING) */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+/* =========================
+   Text / Fonts
+========================= */
+
+h1 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent2);
+  margin-top: 18px;
+  margin-bottom: 6px;
+}
+
+p {
+  margin: 10px 0;
+  color: var(--muted);
+  font-weight: 450;
+}
+
+/* =========================
+   Links
+========================= */
+
+a {
+  color: var(--accent);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: underline;
+}
+
+/* =========================
+   Images
+========================= */
+
+figure {
+  margin: 12px 0;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+figcaption {
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* =========================
+   Lists
+========================= */
+
+ul,
+ol {
+  margin: 10px 0 0 22px;
+  padding: 0;
+}
+
+li {
+  margin: 6px 0;
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* =========================
+   Table Styling
+========================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+caption {
+  text-align: left;
+  padding: 10px 12px;
+  font-weight: 750;
+  color: var(--text);
+}
+
+th,
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+thead th {
+  background: rgba(56, 189, 248, 0.18);
+  font-weight: 700;
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+  margin-bottom: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* =========================
+   Margin vs Padding Demo
+   (visual helper)
+========================= */
+
+/*
+  - Section has margin (space OUTSIDE it)
+  - Section has padding (space INSIDE it)
+  Outline shows the section box clearly
+*/
+section {
+  outline: 2px dashed rgba(255, 255, 255, 0.12);
+  outline-offset: 6px;
+}
