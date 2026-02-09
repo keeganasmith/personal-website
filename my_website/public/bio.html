@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keegan Park Bio</title>
+    <link rel="stylesheet" href="bio.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Web Page Bio for Accessible Computing</p>
+        <h1>Hi, I am Keegan Park</h1>
+        <p class="intro">
+          I am a student who cares about clear design and inclusive tech. I like
+          building pages that work with a keyboard and a screen reader.
+        </p>
+        <p>
+          Visit the
+          <a href="bio-links.html">Web Page Bio Links page</a>
+          to see other class bios.
+        </p>
+      </div>
+      <figure class="profile">
+        <img
+          src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+          alt="Portrait of Keegan Park smiling in a blue shirt."
+          width="300"
+          height="360"
+        />
+        <figcaption>Recent headshot for class introductions.</figcaption>
+      </figure>
+    </header>
+
+    <main>
+      <section aria-labelledby="about-heading">
+        <h2 id="about-heading">About me</h2>
+        <p>
+          I grew up around public libraries, so access to information matters to
+          me. I use <strong>clear labels</strong> and
+          <em>simple navigation</em> in my projects so people can move with
+          confidence.
+        </p>
+        <h3>Accessibility interests</h3>
+        <ul>
+          <li>Screen reader friendly layouts and headings.</li>
+          <li>Captioned video and readable color contrast.</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="tools-heading">
+        <h2 id="tools-heading">Tools I like</h2>
+        <p>
+          I test with VoiceOver, NVDA, and the browser accessibility tree. I also
+          check focus order and skip links.
+        </p>
+        <h3>Team project ideas</h3>
+        <ol>
+          <li>Create a campus map with keyboard friendly filters.</li>
+          <li>Build a study planner with plain language reminders.</li>
+        </ol>
+      </section>
+
+      <section aria-labelledby="contact-heading">
+        <h2 id="contact-heading">Connect with me</h2>
+        <p>
+          If you want to team up, send me a short note about your idea. This form
+          opens your email app.
+        </p>
+        <form
+          class="contact-form"
+          action="mailto:keegan.park@example.com"
+          method="post"
+          enctype="text/plain"
+        >
+          <fieldset>
+            <legend>Team interest form</legend>
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" required />
+
+            <label for="email">Your email</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="interest">Your accessibility focus</label>
+            <textarea id="interest" name="interest" rows="4"></textarea>
+
+            <button type="submit">Send email</button>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <img
+          src="Detail-tile-fireplace-surround-Victorian.webp"
+          alt=""
+          class="decorative"
+          width="160"
+          height="50"
+        />
+        <p>Thanks for reading. I look forward to collaborating.</p>
+      </div>
+    </footer>
+  </body>
+</html>
