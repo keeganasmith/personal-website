@@ -171,6 +171,8 @@ button:hover {
 }
 
 .decorative {
+  display: block;
+  margin-top: 12px;
   opacity: 0.8;
 }
 

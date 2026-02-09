@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="120" viewBox="0 0 320 120" role="img" aria-labelledby="title desc">
+  <title id="title">Decorative wave accent</title>
+  <desc id="desc">A soft teal wave and dot pattern for the bio page.</desc>
+  <rect width="320" height="120" fill="#f1f5f9"/>
+  <path d="M0 70 C60 30, 140 110, 220 70 C260 50, 290 55, 320 40 L320 120 L0 120 Z" fill="#0f766e" opacity="0.15"/>
+  <path d="M0 60 C70 20, 150 100, 240 60 C275 45, 300 50, 320 35" fill="none" stroke="#0f766e" stroke-width="4" opacity="0.45"/>
+  <circle cx="40" cy="28" r="6" fill="#0f766e" opacity="0.35"/>
+  <circle cx="86" cy="18" r="4" fill="#0f766e" opacity="0.25"/>
+  <circle cx="130" cy="26" r="5" fill="#0f766e" opacity="0.3"/>
+  <circle cx="260" cy="20" r="6" fill="#0f766e" opacity="0.2"/>
+</svg>
